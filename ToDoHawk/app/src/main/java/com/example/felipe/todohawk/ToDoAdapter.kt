@@ -13,27 +13,35 @@ import com.example.felipe.todohawk.domain.ToDo
 
 class ToDoAdapter(
     private val context: Context,
-    private val toDolist: List<ToDo>): RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
+    private val toDoList: List<ToDo>) :
+    RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): ViewHolder {
 
-        val v = LayoutInflater.from(context).inflate(R.layout.iten_todo,parent,false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int) : ToDoAdapter.ViewHolder {
+
+        val v = LayoutInflater
+            .from(context)
+            .inflate(R.layout.iten_todo, parent, false)
 
         return ViewHolder(v)
-
     }
 
-    override fun getItemCount(): Int {
-        return toDolist.size
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.setData(toDolist[position])
+        holder.setData(toDoList[position])
     }
 
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView),
-                                           CompoundButton.OnCheckedChangeListener{
+
+    override fun getItemCount(): Int {
+        return toDoList.size
+    }
+
+
+    inner class ViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView),
+        CompoundButton.OnCheckedChangeListener {
 
         var ivPriority: ImageView
         var tvDate: TextView
@@ -47,21 +55,26 @@ class ToDoAdapter(
             tvTask = itemView.findViewById(R.id.tv_task)
             tvDuration = itemView.findViewById(R.id.tv_duration)
             cbDone = itemView.findViewById(R.id.cb_done)
-            cbDone.isChecked = false
-
+            cbDone.setOnCheckedChangeListener(this)
         }
 
-        fun setData(toDo: ToDo){
-            ivPriority.setImageResource(toDo.getPriorityIcon())
-            tvDate.text = toDo.getDateFormatterd()
+        fun setData(toDo: ToDo) {
+            ivPriority.setImageResource( toDo.getPriorityIcon() )
+            tvDate.text = toDo.getDateFormatted()
             tvTask.text = toDo.task
             tvDuration.text = context.resources.getStringArray(R.array.durations)[toDo.duration]
             cbDone.isChecked = false
         }
 
         override fun onCheckedChanged(checkBox: CompoundButton?, status: Boolean) {
-            (context as MainActivity).removeFromList(adapterPosition)
-        }
+            val ma = (context as MainActivity)
 
+            if( !ma.isRecyclerAnimationg() ){
+                ma.removeFromList( adapterPosition )
+            }
+            else{
+                (checkBox as CheckBox).isChecked = false
+            }
+        }
     }
 }

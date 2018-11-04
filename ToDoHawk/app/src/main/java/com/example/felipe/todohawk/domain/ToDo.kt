@@ -3,13 +3,18 @@ package com.example.felipe.todohawk.domain
 import com.example.felipe.todohawk.R
 import java.util.*
 
-class ToDo(
+data class ToDo(
     val date : Long,
     val task : String,
     val duration: Int,
     val priority: Int
 ) {
-    fun getDateFormatterd():String{
+
+    companion object {
+        @JvmField val TO_DO_LIST_KEY = "to_do_list"
+    }
+
+    fun getDateFormatted():String{
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = date
@@ -22,6 +27,7 @@ class ToDo(
         return date.replace("\n","").replace(" ", "").trim()
     }
 
+    fun getDateInSeconds() = date / 1000
     private fun getNumDate(num: Int)
         =if(num <10){
             "0$num"
