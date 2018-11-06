@@ -10,6 +10,7 @@ import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import com.example.felipe.todohawk.MainActivity
 import com.example.felipe.todohawk.R
 import com.example.felipe.todohawk.domain.ToDo
@@ -62,28 +63,44 @@ class TaskDialogFragment: DialogFragment(),View.OnClickListener,AdapterView.OnIt
 
 
     override fun onClick(v: View?) {
-        /*
-        * CONVERSÃO DE DADOS DE DATA EM STRING PARA MILLISECONDS.
-        * */
-        val calendar = Calendar.getInstance()
-        calendar.set(
-            getSelectedYear(),
-            sp_months.selectedItemPosition + 1,
-            sp_days.selectedItemPosition + 1,
-            0,
-            0,
-            0
-        )
 
-        val toDo = ToDo(
-            calendar.timeInMillis,
-            et_task.text.toString(),
-            sp_duration.selectedItemPosition,
-            sp_priority.selectedItemPosition
-        )
+        if(sp_duration.selectedItemPosition == 0){
 
-        (activity as MainActivity).addToList( toDo )
-        dismiss()
+            Toast.makeText((activity as MainActivity).applicationContext,"Tarefa tem que ter uma duração ! ", Toast.LENGTH_SHORT  ).show()
+
+        }else if(sp_priority.selectedItemPosition == 0){
+
+            Toast.makeText((activity as MainActivity).applicationContext,"Defina um nivel de prioridade para a tarefa !", Toast.LENGTH_SHORT  ).show()
+
+        }else if(et_task.text.isEmpty()){
+
+            Toast.makeText((activity as MainActivity).applicationContext,"A Tarefa precisa ter um nome !", Toast.LENGTH_SHORT  ).show()
+
+        }else{
+
+            /*
+            * CONVERSÃO DE DADOS DE DATA EM STRING PARA MILLISECONDS.
+            * */
+            val calendar = Calendar.getInstance()
+            calendar.set(
+                getSelectedYear(),
+                sp_months.selectedItemPosition + 1,
+                sp_days.selectedItemPosition + 1,
+                0,
+                0,
+                0
+            )
+
+            val toDo = ToDo(
+                calendar.timeInMillis,
+                et_task.text.toString(),
+                sp_duration.selectedItemPosition,
+                sp_priority.selectedItemPosition
+            )
+
+            (activity as MainActivity).addToList( toDo )
+            dismiss()
+        }
     }
 
     /*
