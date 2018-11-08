@@ -48,6 +48,7 @@ class TaskDialogFragment: DialogFragment(),View.OnClickListener,AdapterView.OnIt
 
     /*
     * PARA QUE SEJA POSSÍVEL ACESSAR AS VIEWS COM A SINTAXE
+    * PARA QUE SEJA POSSÍVEL ACESSAR AS VIEWS COM A SINTAXE
     * PERMITIDA PELO KOTLIN-ANDROID-EXTENSIONS, TEMOS DE
     * UTILIZAR O onResume() NO DIALOG OU QUALQUER OUTRO
     * MÉTODO DO CICLO DE VIDA DO FRAGMENT QUE VENHA DEPOIS
@@ -57,7 +58,6 @@ class TaskDialogFragment: DialogFragment(),View.OnClickListener,AdapterView.OnIt
     * */
     override fun onResume() {
         super.onResume()
-        bt_create_task.setOnClickListener(this)
         sp_months.setOnItemSelectedListener(this)
     }
 
