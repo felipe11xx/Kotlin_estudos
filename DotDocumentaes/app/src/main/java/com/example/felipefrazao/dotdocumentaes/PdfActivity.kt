@@ -1,7 +1,6 @@
 package com.example.felipefrazao.dotdocumentaes
 
 import android.os.Bundle
-import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
@@ -10,7 +9,7 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.listener.OnRenderListener
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import kotlinx.android.synthetic.main.activity_pdf.*
-import java.io.File
+
 
 class PdfActivity:AppCompatActivity(), OnPageChangeListener,OnRenderListener {
 
@@ -28,7 +27,7 @@ class PdfActivity:AppCompatActivity(), OnPageChangeListener,OnRenderListener {
 
         doc = intent.getParcelableExtra(Doc.DOC_KEY)
 
-        
+
         //val file  = File(Environment.getExternalStorageDirectory(),doc?.path)
         //fromFile(file)
 
