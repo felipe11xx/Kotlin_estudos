@@ -24,6 +24,7 @@ import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
 import org.junit.Assert.assertEquals
 import org.junit.After
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -70,17 +71,17 @@ class SleepDatabaseTest {
     }
 
 
-//    @Test
-//    @Throws(Exception::class)
-//    suspend fun insertThreeNightsAndGetAll() {
-//        val night = SleepNight()
-//        sleepDao.insert(night)
-//        sleepDao.insert(night)
-//        sleepDao.insert(night)
-//        val allNights = sleepDao.getAllNights()
-//
-//        assertEquals(allNights.value?.size, null)
-//    }
+    @Test
+    @Throws(Exception::class)
+    suspend fun insertThreeNightsAndGetAll() {
+        val night = SleepNight()
+        sleepDao.insert(night)
+        sleepDao.insert(night)
+        sleepDao.insert(night)
+        val allNights = sleepDao.getAllNights()
+
+        assertEquals(allNights.value?.size, 3)
+    }
 
 
     @Test
