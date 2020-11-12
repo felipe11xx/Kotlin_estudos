@@ -25,3 +25,5 @@ _app/src/main/java/com/example/android/trackmysleepquality/sleepquality/SleepQua
 ^app/src/main/java/com/example/android/trackmysleepquality/sleepquality/SleepQualityFragment.kt,b/6/b67a4e53e1c207569410b9fb8aebc64219f09210
 ‹
 [app/src/main/java/com/example/android/trackmysleepquality/sleeptracker/SleepNightAdapter.kt,3/c/3ca563641df7cbbfe7a4330c4cae494a2738f93c
+†
+Vapp/src/main/java/com/example/android/trackmysleepquality/sleeptracker/BindingUtils.kt,9/8/9871579954d15ffc31a6e696e40874f01ec9a5d8

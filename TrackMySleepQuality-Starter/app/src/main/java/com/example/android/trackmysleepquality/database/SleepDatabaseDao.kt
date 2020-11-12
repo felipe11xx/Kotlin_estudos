@@ -39,4 +39,7 @@ interface SleepDatabaseDao{
 
     @Query("SELECT *  FROM daily_sleep_quality_table ORDER BY nigthId DESC")
     fun getAllNights():LiveData<List<SleepNight>>
+
+    @Query("SELECT * FROM daily_sleep_quality_table WHERE nigthId = :key")
+    fun getNightWithId(key: Long):LiveData<SleepNight>
 }
